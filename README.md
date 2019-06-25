@@ -1,1 +1,1 @@
-Contains python codes I learnt in first semester in CMI.
+Contains python codes which I learnt in first semester in CMI.
