@@ -1,0 +1,28 @@
+* Graphs
+* Directed Graphs
+* Neighbours
+* Reachable vertices
+
+* Reachability by a simple propagation algorithm: maintain two
+sets UnProcessed and Processed. In each step, pick a vertex from
+UnProcessed, move it to Processed and add every neighbour that has
+not been seen before to UnProcessed. Iterate till UnProcessed is empty.
+(UnProcessed is initialized with the start vertex).
+
+* Correctness: 
+  Prove that the union of the two sets, Processed and UnProcessed,
+contains only reachable vertices.  (Invariant under each step). So,
+every vertex returned is reachable.
+  Prove, by induction on i, that if a vertex can be reached by 
+a path of length i then it is added to UnProcessed (and hence returned 
+as reachable)
+  Prove the termination of the algorithm by showing that each vertex
+may enter UnProcessed only once and in each iteration a vertex from
+UnProcessed needs to be removed.
+
+* Using queues instead of sets results in  processing the vertices in 
+increasing order of distance from the origin. This allows us to determine
+the distance from the origin (and a path of that length if necessary)
+
+* We may also explore depth-wise using a stack. Coding this using
+recursion eliminates the need for explictely maintaining a stack.

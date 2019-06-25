@@ -1,0 +1,45 @@
+Assume list as 2 elements or more. Otherwise, nothing needs to be done.
+
+
+Initialization:
+
+Set p = l[0]
+Set left, right = 1 
+
+   Invariant:  
+            (i)    left <= right 
+            (ii)   0 < i < left then l[i] <= p
+            (iii)  left <= i < right then l[i] > p
+
+    Clearly the invariant holds after initialization
+
+Loop: Do the following till the right pointer = len(l)
+
+    If l[right] > p 
+     then 
+       right = right + 1
+       (Easy to see that the invariant continues to hold)
+    else
+       swap l[left] with l[right], left = left+1, right = right+1  
+
+       (Needs a bit of work to verify invariant continues to hold.
+        The argument is in two cases:
+
+       Case 1: left = right = j  (for some j) 
+               Then, after the 3 operations, left = right = j+1
+               So, (i) and (iii) holds.
+               Since l[right] = l[j] <= p, (ii) also holds.
+
+       Case 2: left < right = j (for some j) 
+               Then, l[left] > p (by iii) before swap and l[j] <= p 
+               So, after swap, l[left] <= p and l[j] > p
+               So, increasing left by 1 preserves (ii) and
+               increasing right by 1 to j+1 preserves (iii)
+        
+        Thus, the invariant is preserved by the execution of else clause 
+        also)
+
+
+Thus, when the loop terminates  with right = len(l), thanks to the invariant, 
+ the values from positions 1 to left-1 are <= p and those from left to right-1
+are > p, thus dividing the list into two parts, one <=p and the other > p.
